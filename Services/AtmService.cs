@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ATMSimulator.Interfaces;
 using ATMSimulator.Models;
+using ATMSimulator.States;
 
 namespace ATMSimulator.Services
 {
@@ -55,6 +56,13 @@ namespace ATMSimulator.Services
         {
             string stateName = CurrentState?.GetType().Name ?? "Невідомий стан";
             OnScreenUpdated?.Invoke(stateName);
+        }
+        public AtmService(IDataStorage storage)
+        {
+            _storage = storage;
+            _users = _storage.LoadUsers();
+
+            ChangeState(new NoCardState()); 
         }
 
         public void InsertCard(string cardNumber) => CurrentState?.InsertCard(this, cardNumber);
