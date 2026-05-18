@@ -62,5 +62,7 @@ namespace ATMSimulator.Services
         public void Withdraw(decimal amount) => CurrentState?.Withdraw(this, amount);
         public void Deposit(decimal amount) => CurrentState?.Deposit(this, amount);
         public void EjectCard() => CurrentState?.EjectCard(this);
+        public void Transfer(string targetCardNumber, decimal amount) => CurrentState?.Transfer(this, targetCardNumber, amount);
+        public void BuyCurrency(string currency, decimal amount, decimal rate) => CurrentState?.BuyCurrency(this, currency, amount, rate);
     }
 }

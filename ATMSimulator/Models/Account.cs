@@ -7,6 +7,8 @@ namespace ATMSimulator.Models
     {
         public string AccountNumber { get; set; }
         public decimal Balance { get; set; }
+        public decimal UsdBalance { get; set; }
+        public decimal EurBalance { get; set; }
         public string Currency { get; set; }
 
         [JsonConstructor]
@@ -16,6 +18,8 @@ namespace ATMSimulator.Models
         {
             AccountNumber = accountNumber;
             Balance = initialBalance;
+            UsdBalance = 0m;
+            EurBalance = 0m;
             Currency = currency;
         }
 

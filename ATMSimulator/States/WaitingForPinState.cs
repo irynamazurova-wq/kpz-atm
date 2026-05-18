@@ -7,7 +7,7 @@ namespace ATMSimulator.States
         private int _pinAttempts = 0;
         private const int MaxAttempts = 3;
 
-        public void InsertCard(AtmService atm, string cardNumber) => atm.TriggerNotification("Card already inside");
+        public void InsertCard(AtmService atm, string cardNumber) => atm.TriggerNotification("Картка вже всередині");
 
         public void EnterPin(AtmService atm, string pin)
         {
@@ -15,7 +15,7 @@ namespace ATMSimulator.States
 
             if (atm.CurrentCard.PinHash == pin)
             {
-                atm.TriggerNotification("PIN correct");
+                atm.TriggerNotification("ПІН-код правильний");
                 atm.ChangeState(new AuthorizedState());
             }
             else
@@ -26,23 +26,25 @@ namespace ATMSimulator.States
                 {
                     atm.CurrentCard.IsBlocked = true;
                     atm.CommitTransaction();
-                    atm.TriggerNotification("Card blocked");
+                    atm.TriggerNotification("Картку заблоковано примусово");
                     atm.SetCurrentUser(null);
                     atm.ChangeState(new NoCardState());
                 }
                 else
                 {
-                    atm.TriggerNotification($"Wrong PIN. Remaining: {remaining}");
+                    atm.TriggerNotification($"Невірний ПІН. Залишилось спроб: {remaining}");
                 }
             }
         }
 
-        public void Withdraw(AtmService atm, decimal amount) => atm.TriggerNotification("Enter PIN first");
-        public void Deposit(AtmService atm, decimal amount) => atm.TriggerNotification("Enter PIN first");
+        public void Withdraw(AtmService atm, decimal amount) => atm.TriggerNotification("Спочатку введіть ПІН");
+        public void Deposit(AtmService atm, decimal amount) => atm.TriggerNotification("Спочатку введіть ПІН");
+        public void Transfer(AtmService atm, string targetCardNumber, decimal amount) => atm.TriggerNotification("Спочатку авторизуйтесь");
+        public void BuyCurrency(AtmService atm, string currency, decimal amount, decimal rate) => atm.TriggerNotification("Спочатку авторизуйтесь");
 
         public void EjectCard(AtmService atm)
         {
-            atm.TriggerNotification("Card ejected");
+            atm.TriggerNotification("Картку повернуто");
             atm.SetCurrentUser(null);
             atm.ChangeState(new NoCardState());
         }

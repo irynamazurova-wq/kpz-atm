@@ -8,8 +8,8 @@ namespace ATMSimulator.States
     {
         private readonly ITransactionProcessor _processor = new TransactionLoggerProxy(new RealTransactionProcessor());
 
-        public void InsertCard(AtmService atm, string cardNumber) => atm.TriggerNotification("Card already inside");
-        public void EnterPin(AtmService atm, string pin) => atm.TriggerNotification("Already authorized");
+        public void InsertCard(AtmService atm, string cardNumber) => atm.TriggerNotification("Картка вже всередині");
+        public void EnterPin(AtmService atm, string pin) => atm.TriggerNotification("Уже авторизовано");
 
         public void Withdraw(AtmService atm, decimal amount)
         {
@@ -17,7 +17,7 @@ namespace ATMSimulator.States
             {
                 _processor.ProcessWithdraw(atm.CurrentUser, amount);
                 atm.CommitTransaction();
-                atm.TriggerNotification($"Withdrawn {amount} UAH");
+                atm.TriggerNotification($"Успішно знято {amount} UAH");
             }
             catch (Exception ex)
             {
@@ -31,7 +31,47 @@ namespace ATMSimulator.States
             {
                 _processor.ProcessDeposit(atm.CurrentUser, amount);
                 atm.CommitTransaction();
-                atm.TriggerNotification($"Deposited {amount} UAH");
+                atm.TriggerNotification($"Рахунок поповнено на {amount} UAH");
+            }
+            catch (Exception ex)
+            {
+                atm.TriggerNotification(ex.Message);
+            }
+        }
+
+        public void Transfer(AtmService atm, string targetCardNumber, decimal amount)
+        {
+            try
+            {
+                var targetUser = atm.FindUserByCard(targetCardNumber);
+                if (targetUser == null)
+                {
+                    atm.TriggerNotification("Картку отримувача не знайдено");
+                    return;
+                }
+                if (targetUser.Id == atm.CurrentUser.Id)
+                {
+                    atm.TriggerNotification("Не можна переказувати собі");
+                    return;
+                }
+
+                _processor.ProcessTransfer(atm.CurrentUser, targetUser, amount);
+                atm.CommitTransaction();
+                atm.TriggerNotification($"Переказано {amount} UAH клієнту {targetUser.GetFullName()}");
+            }
+            catch (Exception ex)
+            {
+                atm.TriggerNotification(ex.Message);
+            }
+        }
+
+        public void BuyCurrency(AtmService atm, string currency, decimal amount, decimal rate)
+        {
+            try
+            {
+                _processor.ProcessExchange(atm.CurrentUser, currency, amount, rate);
+                atm.CommitTransaction();
+                atm.TriggerNotification($"Успішно куплено {amount} {currency}");
             }
             catch (Exception ex)
             {
@@ -41,7 +81,7 @@ namespace ATMSimulator.States
 
         public void EjectCard(AtmService atm)
         {
-            atm.TriggerNotification("Session ended. Take card");
+            atm.TriggerNotification("Сесію завершено. Заберіть картку");
             atm.SetCurrentUser(null);
             atm.ChangeState(new NoCardState());
         }

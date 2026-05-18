@@ -45,6 +45,36 @@ namespace ATMSimulator.Services
             }
         }
 
+        public void ProcessTransfer(User sourceUser, User targetUser, decimal amount)
+        {
+            LogToFile($"TRY TRANSFER: From {sourceUser.GetFullName()} To {targetUser.GetFullName()} - {amount} UAH");
+            try
+            {
+                _realProcessor.ProcessTransfer(sourceUser, targetUser, amount);
+                LogToFile($"SUCCESS TRANSFER: From {sourceUser.GetFullName()} To {targetUser.GetFullName()}");
+            }
+            catch (Exception ex)
+            {
+                LogToFile($"FAIL TRANSFER: From {sourceUser.GetFullName()} - Error: {ex.Message}");
+                throw;
+            }
+        }
+
+        public void ProcessExchange(User user, string currency, decimal amount, decimal rate)
+        {
+            LogToFile($"TRY EXCHANGE: {user.GetFullName()} buy {amount} {currency} at rate {rate}");
+            try
+            {
+                _realProcessor.ProcessExchange(user, currency, amount, rate);
+                LogToFile($"SUCCESS EXCHANGE: {user.GetFullName()} bought {amount} {currency}");
+            }
+            catch (Exception ex)
+            {
+                LogToFile($"FAIL EXCHANGE: {user.GetFullName()} - Error: {ex.Message}");
+                throw;
+            }
+        }
+
         private void LogToFile(string message)
         {
             try

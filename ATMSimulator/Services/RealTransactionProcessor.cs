@@ -20,5 +20,26 @@ namespace ATMSimulator.Services
         {
             user.UserAccount.Deposit(amount);
         }
+
+        public void ProcessTransfer(User sourceUser, User targetUser, decimal amount)
+        {
+            sourceUser.UserAccount.Withdraw(amount);
+            targetUser.UserAccount.Deposit(amount);
+        }
+
+        public void ProcessExchange(User user, string currency, decimal amount, decimal rate)
+        {
+            decimal cost = amount * rate;
+            user.UserAccount.Withdraw(cost);
+
+            if (currency == "USD")
+            {
+                user.UserAccount.UsdBalance += amount;
+            }
+            else if (currency == "EUR")
+            {
+                user.UserAccount.EurBalance += amount;
+            }
+        }
     }
 }
