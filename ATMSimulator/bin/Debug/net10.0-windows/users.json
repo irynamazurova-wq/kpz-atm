@@ -1,0 +1,32 @@
+[
+  {
+    "Id": "1",
+    "FirstName": "\u041C\u0430\u043A\u0441\u0438\u043C",
+    "LastName": "\u041E\u0441\u0442\u0430\u043F\u0447\u0443\u043A",
+    "UserCard": {
+      "CardNumber": "1111222233334444",
+      "PinHash": "1234",
+      "IsBlocked": false
+    },
+    "UserAccount": {
+      "AccountNumber": "UA123456",
+      "Balance": 1302,
+      "Currency": "UAH"
+    }
+  },
+  {
+    "Id": "2",
+    "FirstName": "\u041E\u043A\u0441\u0430\u043D\u0430",
+    "LastName": "\u0421\u0435\u0434\u043B\u044F\u0440",
+    "UserCard": {
+      "CardNumber": "5555666677778888",
+      "PinHash": "4321",
+      "IsBlocked": false
+    },
+    "UserAccount": {
+      "AccountNumber": "UA654321",
+      "Balance": 12500,
+      "Currency": "UAH"
+    }
+  }
+]

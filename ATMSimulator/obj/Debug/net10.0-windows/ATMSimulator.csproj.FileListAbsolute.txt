@@ -1,0 +1,15 @@
+C:\Users\Admin\OneDrive\Навчання\2 семестр\КПЗ\д\KPZ_ATM\ATMSimulator\obj\Debug\net10.0-windows\ATMSimulator.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\OneDrive\Навчання\2 семестр\КПЗ\д\KPZ_ATM\ATMSimulator\obj\Debug\net10.0-windows\ATMSimulator.AssemblyInfoInputs.cache
+C:\Users\Admin\OneDrive\Навчання\2 семестр\КПЗ\д\KPZ_ATM\ATMSimulator\obj\Debug\net10.0-windows\ATMSimulator.AssemblyInfo.cs
+C:\Users\Admin\OneDrive\Навчання\2 семестр\КПЗ\д\KPZ_ATM\ATMSimulator\obj\Debug\net10.0-windows\ATMSimulator.csproj.CoreCompileInputs.cache
+C:\Users\Admin\OneDrive\Навчання\2 семестр\КПЗ\д\KPZ_ATM\ATMSimulator\obj\Debug\net10.0-windows\ATMSimulator.sourcelink.json
+C:\Users\Admin\OneDrive\Навчання\2 семестр\КПЗ\д\KPZ_ATM\ATMSimulator\bin\Debug\net10.0-windows\ATMSimulator.exe
+C:\Users\Admin\OneDrive\Навчання\2 семестр\КПЗ\д\KPZ_ATM\ATMSimulator\bin\Debug\net10.0-windows\ATMSimulator.deps.json
+C:\Users\Admin\OneDrive\Навчання\2 семестр\КПЗ\д\KPZ_ATM\ATMSimulator\bin\Debug\net10.0-windows\ATMSimulator.runtimeconfig.json
+C:\Users\Admin\OneDrive\Навчання\2 семестр\КПЗ\д\KPZ_ATM\ATMSimulator\bin\Debug\net10.0-windows\ATMSimulator.dll
+C:\Users\Admin\OneDrive\Навчання\2 семестр\КПЗ\д\KPZ_ATM\ATMSimulator\bin\Debug\net10.0-windows\ATMSimulator.pdb
+C:\Users\Admin\OneDrive\Навчання\2 семестр\КПЗ\д\KPZ_ATM\ATMSimulator\obj\Debug\net10.0-windows\ATMSimulator.dll
+C:\Users\Admin\OneDrive\Навчання\2 семестр\КПЗ\д\KPZ_ATM\ATMSimulator\obj\Debug\net10.0-windows\refint\ATMSimulator.dll
+C:\Users\Admin\OneDrive\Навчання\2 семестр\КПЗ\д\KPZ_ATM\ATMSimulator\obj\Debug\net10.0-windows\ATMSimulator.pdb
+C:\Users\Admin\OneDrive\Навчання\2 семестр\КПЗ\д\KPZ_ATM\ATMSimulator\obj\Debug\net10.0-windows\ATMSimulator.genruntimeconfig.cache
+C:\Users\Admin\OneDrive\Навчання\2 семестр\КПЗ\д\KPZ_ATM\ATMSimulator\obj\Debug\net10.0-windows\ref\ATMSimulator.dll

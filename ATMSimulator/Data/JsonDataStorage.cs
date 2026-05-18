@@ -2,10 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
-using ATMSimulator.Interfaces;
 using ATMSimulator.Models;
 
-namespace ATMSimulator.Services
+namespace ATMSimulator.Data
 {
     public class JsonDataStorage : IDataStorage
     {
@@ -41,13 +40,20 @@ namespace ATMSimulator.Services
             try
             {
                 if (!File.Exists(_filePath)) return new List<User>();
-                
                 string jsonString = File.ReadAllText(_filePath);
-                return JsonSerializer.Deserialize<List<User>>(jsonString) ?? new List<User>();
+                var users = JsonSerializer.Deserialize<List<User>>(jsonString);
+                if (users == null || users.Count == 0)
+                {
+                    SeedInitialData();
+                    return LoadUsers();
+                }
+                return users;
             }
             catch (Exception)
             {
-                return new List<User>();
+                SeedInitialData();
+                string jsonString = File.ReadAllText(_filePath);
+                return JsonSerializer.Deserialize<List<User>>(jsonString) ?? new List<User>();
             }
         }
 
@@ -59,9 +65,8 @@ namespace ATMSimulator.Services
                 string jsonString = JsonSerializer.Serialize(users, options);
                 File.WriteAllText(_filePath, jsonString);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine($"Помилка збереження даних: {ex.Message}");
             }
         }
 
@@ -69,13 +74,8 @@ namespace ATMSimulator.Services
         {
             var testUsers = new List<User>
             {
-                new User("1", "Іван", "Петренко", 
-                    new Card("1111222233334444", "1234"), 
-                    new Account("UA123456", 5000m)),    
-                
-                new User("2", "Марія", "Коваленко", 
-                    new Card("5555666677778888", "4321"), 
-                    new Account("UA654321", 12500m))       
+                new User("1", "Ivan", "Petrenko", new Card("1111222233334444", "1234", "Regular"), new Account("UA1111", 5000m)),
+                new User("2", "Mariia", "Kovalenko", new Card("5555666677778888", "4321", "VIP"), new Account("UA2222", 12500m))
             };
             SaveUsers(testUsers);
         }
