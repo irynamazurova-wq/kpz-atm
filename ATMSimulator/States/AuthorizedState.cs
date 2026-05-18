@@ -8,8 +8,8 @@ namespace ATMSimulator.States
     {
         private readonly ITransactionProcessor _processor = new TransactionLoggerProxy(new RealTransactionProcessor());
 
-        public void InsertCard(AtmService atm, string cardNumber) => atm.TriggerNotification("Card already inside");
-        public void EnterPin(AtmService atm, string pin) => atm.TriggerNotification("Already authorized");
+        public void InsertCard(AtmService atm, string cardNumber) => atm.TriggerNotification("Картка вже всередині");
+        public void EnterPin(AtmService atm, string pin) => atm.TriggerNotification("Уже авторизовано");
 
         public void Withdraw(AtmService atm, decimal amount)
         {
@@ -17,7 +17,7 @@ namespace ATMSimulator.States
             {
                 _processor.ProcessWithdraw(atm.CurrentUser, amount);
                 atm.CommitTransaction();
-                atm.TriggerNotification($"Withdrawn {amount} UAH");
+                atm.TriggerNotification($"Успішно знято {amount} UAH");
             }
             catch (Exception ex)
             {
@@ -31,7 +31,7 @@ namespace ATMSimulator.States
             {
                 _processor.ProcessDeposit(atm.CurrentUser, amount);
                 atm.CommitTransaction();
-                atm.TriggerNotification($"Deposited {amount} UAH");
+                atm.TriggerNotification($"Рахунок поповнено на {amount} UAH");
             }
             catch (Exception ex)
             {
@@ -41,7 +41,7 @@ namespace ATMSimulator.States
 
         public void EjectCard(AtmService atm)
         {
-            atm.TriggerNotification("Session ended. Take card");
+            atm.TriggerNotification("Сесію завершено. Заберіть картку");
             atm.SetCurrentUser(null);
             atm.ChangeState(new NoCardState());
         }

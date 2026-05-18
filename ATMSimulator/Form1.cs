@@ -24,7 +24,7 @@ namespace ATMSimulator
 
         private void InitializeComponent()
         {
-            this.Text = "ATM - Login";
+            this.Text = "Банкомат - Авторизація";
             this.Size = new Size(400, 320);
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -32,7 +32,7 @@ namespace ATMSimulator
 
             var lblTitle = new Label
             {
-                Text = "INSERT CARD",
+                Text = "ВСТАВТЕ КАРТКУ",
                 Font = new Font("Segoe UI", 14, FontStyle.Bold),
                 ForeColor = Color.LightGray,
                 Location = new Point(20, 20),
@@ -40,15 +40,15 @@ namespace ATMSimulator
                 TextAlign = ContentAlignment.MiddleCenter
             };
 
-            var lblCard = new Label { Text = "Card Number:", ForeColor = Color.DarkGray, Location = new Point(50, 70), Size = new Size(300, 20) };
+            var lblCard = new Label { Text = "Номер картки:", ForeColor = Color.DarkGray, Location = new Point(50, 70), Size = new Size(300, 20) };
             txtCardNumber = new TextBox { Location = new Point(50, 90), Size = new Size(280, 25), Font = new Font("Segoe UI", 11), Text = "5555666677778888" };
 
-            var lblPin = new Label { Text = "PIN:", ForeColor = Color.DarkGray, Location = new Point(50, 130), Size = new Size(300, 20) };
+            var lblPin = new Label { Text = "ПІН-код:", ForeColor = Color.DarkGray, Location = new Point(50, 130), Size = new Size(300, 20) };
             txtPinCode = new TextBox { Location = new Point(50, 150), Size = new Size(280, 25), Font = new Font("Segoe UI", 11), PasswordChar = '*', Text = "4321" };
 
             btnLogin = new Button
             {
-                Text = "ENTER",
+                Text = "УВІЙТИ",
                 Location = new Point(50, 200),
                 Size = new Size(280, 40),
                 BackColor = Color.FromArgb(0, 122, 204),

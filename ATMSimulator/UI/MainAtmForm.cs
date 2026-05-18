@@ -31,7 +31,7 @@ namespace ATMSimulator
 
         private void InitializeComponent()
         {
-            this.Text = "ATM - Main Panel";
+            this.Text = "Банкомат - Головна панель";
             this.Size = new Size(700, 550);
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -48,19 +48,19 @@ namespace ATMSimulator
                 TextAlign = ContentAlignment.MiddleCenter
             };
 
-            var lblAmount = new Label { Text = "Amount (UAH):", ForeColor = Color.White, Location = new Point(30, 205), Size = new Size(250, 20) };
+            var lblAmount = new Label { Text = "Сума (грн):", ForeColor = Color.White, Location = new Point(30, 205), Size = new Size(250, 20) };
             txtAmount = new TextBox { Location = new Point(30, 230), Size = new Size(220, 25), Font = new Font("Segoe UI", 12) };
 
-            btnWithdraw = CreateStyledButton("Withdraw", new Point(280, 225), Color.FromArgb(180, 40, 40));
+            btnWithdraw = CreateStyledButton("Зняти готівку", new Point(280, 225), Color.FromArgb(180, 40, 40));
             btnWithdraw.Click += (s, e) => HandleFinanceAction(isWithdraw: true);
 
-            btnDeposit = CreateStyledButton("Deposit", new Point(470, 225), Color.FromArgb(40, 120, 40));
+            btnDeposit = CreateStyledButton("Поповнити рахунок", new Point(470, 225), Color.FromArgb(40, 120, 40));
             btnDeposit.Click += (s, e) => HandleFinanceAction(isWithdraw: false);
 
-            btnExit = CreateStyledButton("EXIT", new Point(280, 285), Color.FromArgb(90, 20, 20), new Size(370, 40));
+            btnExit = CreateStyledButton("ВИХІД", new Point(280, 285), Color.FromArgb(90, 20, 20), new Size(370, 40));
             btnExit.Click += BtnExit_Click;
 
-            var lblLogTitle = new Label { Text = "Transaction Log:", ForeColor = Color.DarkGray, Location = new Point(30, 360), Size = new Size(200, 20) };
+            var lblLogTitle = new Label { Text = "Журнал операцій:", ForeColor = Color.DarkGray, Location = new Point(30, 360), Size = new Size(200, 20) };
             lstLog = new ListBox
             {
                 Location = new Point(30, 385),
@@ -94,10 +94,10 @@ namespace ATMSimulator
         {
             if (_atmService.CurrentUser != null)
             {
-                lblMonitor.Text = $"=== ATM NETWORK ===\n\n" +
-                                  $"Client: {_atmService.CurrentUser.GetFullName()}\n" +
-                                  $"Account: {_atmService.CurrentUser.UserAccount.AccountNumber}\n" +
-                                  $"Balance: {_atmService.CurrentUser.UserAccount.Balance} UAH";
+                lblMonitor.Text = $"Банкомат\n\n" +
+                                  $"Клієнт: {_atmService.CurrentUser.GetFullName()}\n" +
+                                  $"Рахунок: {_atmService.CurrentUser.UserAccount.AccountNumber}\n" +
+                                  $"Баланс: {_atmService.CurrentUser.UserAccount.Balance} UAH";
             }
         }
 

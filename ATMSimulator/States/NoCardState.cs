@@ -9,22 +9,22 @@ namespace ATMSimulator.States
             var user = atm.FindUserByCard(cardNumber);
             if (user == null)
             {
-                atm.TriggerNotification("Card not found");
+                atm.TriggerNotification("Картку не знайдено");
                 return;
             }
             if (user.UserCard.IsBlocked)
             {
-                atm.TriggerNotification("Card is blocked");
+                atm.TriggerNotification("Картку заблоковано");
                 return;
             }
             atm.SetCurrentUser(user);
-            atm.TriggerNotification("Card inserted. Enter PIN");
+            atm.TriggerNotification("Картку зчитано. Введіть ПІН-код");
             atm.ChangeState(new WaitingForPinState());
         }
 
-        public void EnterPin(AtmService atm, string pin) => atm.TriggerNotification("Insert card first");
-        public void Withdraw(AtmService atm, decimal amount) => atm.TriggerNotification("Insert card first");
-        public void Deposit(AtmService atm, decimal amount) => atm.TriggerNotification("Insert card first");
-        public void EjectCard(AtmService atm) => atm.TriggerNotification("No card in ATM");
+        public void EnterPin(AtmService atm, string pin) => atm.TriggerNotification("Спочатку вставте картку");
+        public void Withdraw(AtmService atm, decimal amount) => atm.TriggerNotification("Спочатку вставте картку");
+        public void Deposit(AtmService atm, decimal amount) => atm.TriggerNotification("Спочатку вставте картку");
+        public void EjectCard(AtmService atm) => atm.TriggerNotification("У банкоматі немає картки");
     }
 }
