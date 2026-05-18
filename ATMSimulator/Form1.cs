@@ -5,7 +5,7 @@ using ATMSimulator.Services;
 using ATMSimulator.States;
 using ATMSimulator.Data;
 
-namespace ATMSimulator.UI
+namespace ATMSimulator
 {
     public class LoginForm : Form
     {
