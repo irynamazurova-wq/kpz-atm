@@ -39,6 +39,46 @@ namespace ATMSimulator.States
             }
         }
 
+        public void Transfer(AtmService atm, string targetCardNumber, decimal amount)
+        {
+            try
+            {
+                var targetUser = atm.FindUserByCard(targetCardNumber);
+                if (targetUser == null)
+                {
+                    atm.TriggerNotification("Картку отримувача не знайдено");
+                    return;
+                }
+                if (targetUser.Id == atm.CurrentUser.Id)
+                {
+                    atm.TriggerNotification("Не можна переказувати собі");
+                    return;
+                }
+
+                _processor.ProcessTransfer(atm.CurrentUser, targetUser, amount);
+                atm.CommitTransaction();
+                atm.TriggerNotification($"Переказано {amount} UAH клієнту {targetUser.GetFullName()}");
+            }
+            catch (Exception ex)
+            {
+                atm.TriggerNotification(ex.Message);
+            }
+        }
+
+        public void BuyCurrency(AtmService atm, string currency, decimal amount, decimal rate)
+        {
+            try
+            {
+                _processor.ProcessExchange(atm.CurrentUser, currency, amount, rate);
+                atm.CommitTransaction();
+                atm.TriggerNotification($"Успішно куплено {amount} {currency}");
+            }
+            catch (Exception ex)
+            {
+                atm.TriggerNotification(ex.Message);
+            }
+        }
+
         public void EjectCard(AtmService atm)
         {
             atm.TriggerNotification("Сесію завершено. Заберіть картку");

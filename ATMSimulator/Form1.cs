@@ -32,7 +32,7 @@ namespace ATMSimulator
 
             var lblTitle = new Label
             {
-                Text = "ВСТАВТЕ КАРТКУ",
+                Text = "Вставте картку",
                 Font = new Font("Segoe UI", 14, FontStyle.Bold),
                 ForeColor = Color.LightGray,
                 Location = new Point(20, 20),
@@ -41,14 +41,14 @@ namespace ATMSimulator
             };
 
             var lblCard = new Label { Text = "Номер картки:", ForeColor = Color.DarkGray, Location = new Point(50, 70), Size = new Size(300, 20) };
-            txtCardNumber = new TextBox { Location = new Point(50, 90), Size = new Size(280, 25), Font = new Font("Segoe UI", 11), Text = "5555666677778888" };
+            txtCardNumber = new TextBox { Location = new Point(50, 90), Size = new Size(280, 25), Font = new Font("Segoe UI", 11), Text = "" };
 
             var lblPin = new Label { Text = "ПІН-код:", ForeColor = Color.DarkGray, Location = new Point(50, 130), Size = new Size(300, 20) };
-            txtPinCode = new TextBox { Location = new Point(50, 150), Size = new Size(280, 25), Font = new Font("Segoe UI", 11), PasswordChar = '*', Text = "4321" };
+            txtPinCode = new TextBox { Location = new Point(50, 150), Size = new Size(280, 25), Font = new Font("Segoe UI", 11), PasswordChar = '*', Text = "" };
 
             btnLogin = new Button
             {
-                Text = "УВІЙТИ",
+                Text = "Ввійти",
                 Location = new Point(50, 200),
                 Size = new Size(280, 40),
                 BackColor = Color.FromArgb(0, 122, 204),

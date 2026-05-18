@@ -26,7 +26,7 @@ namespace ATMSimulator.States
                 {
                     atm.CurrentCard.IsBlocked = true;
                     atm.CommitTransaction();
-                    atm.TriggerNotification("Картку заблоковано");
+                    atm.TriggerNotification("Картку заблоковано примусово");
                     atm.SetCurrentUser(null);
                     atm.ChangeState(new NoCardState());
                 }
@@ -39,6 +39,8 @@ namespace ATMSimulator.States
 
         public void Withdraw(AtmService atm, decimal amount) => atm.TriggerNotification("Спочатку введіть ПІН");
         public void Deposit(AtmService atm, decimal amount) => atm.TriggerNotification("Спочатку введіть ПІН");
+        public void Transfer(AtmService atm, string targetCardNumber, decimal amount) => atm.TriggerNotification("Спочатку авторизуйтесь");
+        public void BuyCurrency(AtmService atm, string currency, decimal amount, decimal rate) => atm.TriggerNotification("Спочатку авторизуйтесь");
 
         public void EjectCard(AtmService atm)
         {

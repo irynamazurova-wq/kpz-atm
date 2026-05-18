@@ -25,6 +25,8 @@ namespace ATMSimulator.States
         public void EnterPin(AtmService atm, string pin) => atm.TriggerNotification("Спочатку вставте картку");
         public void Withdraw(AtmService atm, decimal amount) => atm.TriggerNotification("Спочатку вставте картку");
         public void Deposit(AtmService atm, decimal amount) => atm.TriggerNotification("Спочатку вставте картку");
+        public void Transfer(AtmService atm, string targetCardNumber, decimal amount) => atm.TriggerNotification("Спочатку авторизуйтесь");
+        public void BuyCurrency(AtmService atm, string currency, decimal amount, decimal rate) => atm.TriggerNotification("Спочатку авторизуйтесь");
         public void EjectCard(AtmService atm) => atm.TriggerNotification("У банкоматі немає картки");
     }
 }
