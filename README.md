@@ -15,13 +15,24 @@
 Відкрийте рішення KPZ-ATM.sln у Visual Studio. Натисніть F5 для запуска. Файли бази даних users.json та логів transactions_log.txt створяться автоматично у папці виконання.
 
 ### Структура проєкту
-* **Program.cs** — Точка входу, запуск форми
-* **Form1.cs** — Вікно авторизації 
-* **Data/JsonDataStorage.cs** — Робота з файлом JSON 
-* **Models/** — Доменні моделі 
-* **Services/AtmService.cs** — Керуючий сервіс 
-* **Services/RealTransactionProcessor.cs** — Логіка транзакцій 
-* **UI/MainAtmForm.cs** — Головне вікно банкомата
+
+ATMSimulator/
+├── Data/
+│   ├── IDataStorage.cs            # Інтерфейс файлового сховища
+│   └── JsonDataStorage.cs         # Робота з файлом JSON (Repository)
+├── Models/                        # Доменні моделі (Account, Card, User)
+├── Services/
+│   ├── AtmService.cs              # Керуючий сервіс (Observer)
+│   ├── RealTransactionProcessor.cs # Логіка транзакцій
+│   └── TransactionLoggerProxy.cs  # Проксі-сервіс логування операцій
+├── Strategies/                    # Патерн Strategy (комісії)
+│   ├── IWithdrawStrategy.cs       # Інтерфейс стратегій
+│   ├── RegularWithdrawStrategy.cs # Комісія 1% для Regular
+│   └── VipWithdrawStrategy.cs     # Комісія 0% для VIP
+├── UI/
+│   └── MainAtmForm.cs             # Головне вікно банкомата
+├── Form1.cs                       # Вікно авторизації (LoginForm)
+└── Program.cs                     # Точка входу, запуск форми
 
 * **SRP — Single Responsibility** Кожен клас відповідає за одну річ. JsonDataStorage — тільки читання та запис файлу. AtmService — тільки бізнес-логіка банкомата. MainAtmForm — тільки відображення UI.
 * **OCP — Open/Closed** Процесор транзакцій працює через стратегії розрахунку комісії. Нову логіку комісії можна додавати окремим класом, не змінюючи існуючий код сервісу.
