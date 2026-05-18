@@ -16,22 +16,23 @@
 
 ### Структура проєкту
 
+```text
 ATMSimulator/
 ├── Data/
 │   ├── IDataStorage.cs            # Інтерфейс файлового сховища
-│   └── JsonDataStorage.cs         # Робота з файлом JSON (Repository)
-├── Models/                        # Доменні моделі (Account, Card, User)
+│   └── JsonDataStorage.cs         # Робота з файлом JSON 
+├── Models/                        # Доменні моделі 
 ├── Services/
-│   ├── AtmService.cs              # Керуючий сервіс (Observer)
+│   ├── AtmService.cs              # Керуючий сервіс 
 │   ├── RealTransactionProcessor.cs # Логіка транзакцій
 │   └── TransactionLoggerProxy.cs  # Проксі-сервіс логування операцій
-├── Strategies/                    # Патерн Strategy (комісії)
+├── Strategies/                    # Шаблон Strategy 
 │   ├── IWithdrawStrategy.cs       # Інтерфейс стратегій
 │   ├── RegularWithdrawStrategy.cs # Комісія 1% для Regular
 │   └── VipWithdrawStrategy.cs     # Комісія 0% для VIP
 ├── UI/
 │   └── MainAtmForm.cs             # Головне вікно банкомата
-├── Form1.cs                       # Вікно авторизації (LoginForm)
+├── Form1.cs                       # Вікно авторизації 
 └── Program.cs                     # Точка входу, запуск форми
 
 * **SRP — Single Responsibility** Кожен клас відповідає за одну річ. JsonDataStorage — тільки читання та запис файлу. AtmService — тільки бізнес-логіка банкомата. MainAtmForm — тільки відображення UI.
